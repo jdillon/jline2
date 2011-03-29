@@ -1339,20 +1339,22 @@ public class ConsoleReader
     /**
      * Read a line for unsupported terminals.
      */
-    private String readLine(final InputStream in) throws IOException {
-        StringBuilder buff = new StringBuilder();
+    private String readLine(final InputStream in) throws IOException
+    {
+       StringBuilder buff = new StringBuilder();
 
-        while (true) {
-            int i = in.read();
+       while (true)  {
+          int i = in.read();
 
-            if (i == -1 || i == '\n' || i == '\r') {
-                return buff.toString();
-            }
+          if (i == -1) {
+             return null;
+          }
+          else if (i == '\n' || i == '\r') {
+             return buff.toString();
+          }
 
-            buff.append((char) i);
-        }
-
-        // return new BufferedReader (new InputStreamReader (in)).readLine ();
+          buff.append((char) i);
+       }
     }
 
     //
